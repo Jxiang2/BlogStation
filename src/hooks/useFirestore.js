@@ -1,7 +1,7 @@
 // add, remove items from firestore
 
 import { useReducer, useEffect, useState } from "react"
-import { projectFirestore, timeStamp } from '../config/config'
+import { projectFirestore, timeStamp } from '../firebase/config'
 
 let initialState = {
     document: null,
