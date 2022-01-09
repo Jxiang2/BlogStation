@@ -47,7 +47,7 @@ ul {
 /* forms */
 label {
   display: block;
-  margin: 24px auto;
+  margin: 15px auto;
 }
 label span {
   display: block;
@@ -63,7 +63,7 @@ input, textarea {
   border-radius: 4px;
 }
 textarea {
-  min-height: 160px;
+  min-height: 100px;
 }
 .error {
   color: red;
