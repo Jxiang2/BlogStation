@@ -17,7 +17,7 @@ export const useCollection = (collection, _query, _orderBy) => {
             db = db.where(...query)
         }
         if (orderBy) {
-            db = redbf.orderBy(...orderBy)
+            db = db.orderBy(...orderBy)
         }
         const unsub = db.onSnapshot((snapshot)=> {
             let resource = []

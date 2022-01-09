@@ -14,6 +14,7 @@ import { useAuthContext } from './hooks/useAuthContext';
 // stules
 import './App.css';
 import Sidebar from './components/Sidebar';
+import UserList from './components/UserList';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
       {authIsReady && (
         <BrowserRouter>
           {user && <Sidebar/>}
+
           <div className='container'>
             <Navbar/>
 
@@ -51,7 +53,9 @@ function App() {
               {!user && <Login/>}
               {user && <Redirect to='/'/>}
             </Route></Switch>
-        </div>
+          </div>
+
+        {user && <UserList/>}
         </BrowserRouter>
       )}
     </div>
