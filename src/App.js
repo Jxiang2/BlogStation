@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 // pages and components
 import Dashboard from './pages/Dashboard'
@@ -8,24 +8,52 @@ import Create from './pages/Create'
 import ProjectDetail from './pages/ProjectDetail'
 import Navbar from './components/Navbar';
 
+// context
+import { useAuthContext } from './hooks/useAuthContext';
+
 // stules
 import './App.css';
 import Sidebar from './components/Sidebar';
 
 function App() {
+
+  const { user, authIsReady} = useAuthContext()
+
   return (
     <div className="App">
-      <BrowserRouter>
-        <Sidebar/>
-        <div className='container'>
-          <Navbar/>
-          <Switch><Route exact path='/'><Dashboard/></Route></Switch>
-          <Switch><Route exact path='/create'><Create/></Route></Switch>
-          <Switch><Route exact path='/signup'><Signup/></Route></Switch>
-          <Switch><Route exact path='/projects/:id'><ProjectDetail/></Route></Switch>
-          <Switch><Route exact path='/login'><Login/></Route></Switch>
+      {authIsReady && (
+        <BrowserRouter>
+          <Sidebar/>
+          <div className='container'>
+            <Navbar/>
+
+            <Switch><Route exact path='/'>
+              {user && <Dashboard/>}
+              {!user && <Redirect to='/login'/>}
+            </Route></Switch>
+
+            <Switch><Route exact path='/create'>
+              {user && <Create/>}
+              {!user && <Redirect to='/login'/>}
+            </Route></Switch>
+
+            <Switch><Route exact path='/signup'>
+              {!user && <Signup/>}
+              {user && <Redirect to='/'/>}
+            </Route></Switch>
+
+            <Switch><Route exact path='/projects/:id'>
+              {user && <ProjectDetail/>}
+              {!user && <Redirect to='/login'/>}
+            </Route></Switch>
+
+            <Switch><Route exact path='/login'>
+              {!user && <Login/>}
+              {user && <Redirect to='/'/>}
+            </Route></Switch>
         </div>
-      </BrowserRouter>
+        </BrowserRouter>
+      )}
     </div>
   );
 }

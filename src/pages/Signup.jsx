@@ -39,7 +39,6 @@ export default function Signup() {
         // valid file
         setThumbmailError(null)
         setThumbmail(selected)
-        console.log('thumbmail updated')
     }
 
     return (
