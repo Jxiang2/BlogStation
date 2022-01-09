@@ -135,7 +135,9 @@ export default function Create() {
                 </label>
 
                 {formError && <p className='error'>{formError}</p>}
-                <button style={{'marginBottom': '100px'}} className='btn'>Add Project</button>
+
+                {!response.isPending && <button style={{'marginBottom': '100px'}} className='btn'>Add Project</button>}
+                {response.isPending &&  <button style={{'marginBottom': '100px'}} disabled className='btn'>Adding...</button>}
             </form>
         </div>
     )
