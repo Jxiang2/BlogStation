@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import ProjectSummary from '../components/ProjectSummary'
+import ProjectSummary from './ProjectSummary'
 import { useDocument } from '../hooks/useDocument'
 
 // styles

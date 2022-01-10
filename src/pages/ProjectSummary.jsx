@@ -1,4 +1,4 @@
-import Avatar from './Avatar'
+import Avatar from '../components/Avatar'
 
 export default function ProjectSummary( { project }) {
     return (
@@ -8,11 +8,12 @@ export default function ProjectSummary( { project }) {
                 <p className="date">Project due by {project.date.toDate().toDateString()}</p>
                 <p className="detail">{project.detail}</p>
                 <h4>Project assigned to:</h4>
-                {project.assignedUsersList.map(user=>(
+                <div className='assigned-users'>
+                    {project.assignedUsersList.map(user=>(
                     <div key={user.id}>
                         <Avatar src={user.photoURL}/>
-                    </div>
-                ))}
+                    </div>))}
+                </div>
             </div>
         </div>
         

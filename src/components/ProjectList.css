@@ -1,7 +1,7 @@
 .project-list {
 margin-top: 40px;
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 grid-gap: 20px;
 }
 
@@ -33,7 +33,7 @@ border-top: 1px solid #eee;
 .project-list ul {
 margin: 10px 0;
 display: flex;
-grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 grid-gap: 5px;
 }
 
