@@ -10,10 +10,12 @@ import { timestamp } from '../../firebase/config'
 import './Create.css'
 
 const categories = [
-    {value: 'design', label: 'Design'},
-    {value: 'sales', label: 'Sales'},
-    {value: 'marketing', label: 'Marketing'},
-    {value: 'dev', label: 'Development'}
+    {value: 'animals', label: 'animals'},
+    {value: 'architecture', label: 'architecture'},
+    {value: 'anime', label: 'anime'},
+    {value: 'game', label: 'game'},
+    {value: 'nature', label: 'nature'},
+    {value: 'people', label: 'people'},
 ]
 
 export default function Create() {
@@ -90,10 +92,10 @@ export default function Create() {
 
     return (
         <div className='create-form'>
-            <h2 className='page-title'>Schedule New Project</h2>
+            <h2 className='page-title'>Upload New Artwork</h2>
             <form onSubmit={handleSubmit}>
                 <label>
-                    <span>Project Name</span>
+                    <span>Artwork Name</span>
                     <input 
                      type="text"
                      required
@@ -103,7 +105,7 @@ export default function Create() {
                 </label>
 
                 <label>
-                    <span>Project Detail</span>
+                    <span>Artwork Detail</span>
                     <textarea 
                      type="text"
                      required
@@ -113,7 +115,7 @@ export default function Create() {
                 </label>
 
                 <label>
-                    <span>Set Date</span>
+                    <span>Date of Completion</span>
                     <input 
                      type="date"
                      required
@@ -122,7 +124,7 @@ export default function Create() {
                 </label>
 
                 <label>
-                    <span>Set Category</span>
+                    <span>Artwork Category</span>
                     <Select
                      maxMenuHeight='100px'
                      onChange={(option)=>setCategory(option)}
@@ -131,7 +133,7 @@ export default function Create() {
                 </label>
 
                 <label>
-                    <span>Set Assignee</span>
+                    <span>Credits To</span>
                     <Select 
                      maxMenuHeight='100px'
                      options={users}
@@ -141,7 +143,7 @@ export default function Create() {
 
                 {formError && <p className='error'>{formError}</p>}
 
-                {!response.isPending && <button style={{'marginBottom': '100px'}} className='btn'>Add Project</button>}
+                {!response.isPending && <button style={{'marginBottom': '100px'}} className='btn'>Add</button>}
                 {response.isPending &&  <button style={{'marginBottom': '100px'}} disabled className='btn'>Adding...</button>}
             </form>
         </div>

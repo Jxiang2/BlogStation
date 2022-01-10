@@ -25,10 +25,12 @@ export default function Dashboard() {
                     }
                 })
                 return assignedToMe
-            case 'dev':
-            case 'design':
-            case 'sales':
-            case 'marketing':
+            case 'game':
+            case 'anime':
+            case 'nature':
+            case 'architecture':
+            case 'animals':
+            case 'people':
                 return project.category === currentFilter
             default:
                 return true

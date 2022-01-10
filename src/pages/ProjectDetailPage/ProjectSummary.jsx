@@ -21,11 +21,11 @@ export default function ProjectSummary( { project }) {
 
                 <p>By {project.createdBy.displayName}</p>
 
-                <p className="date">Project due by {project.date.toDate().toDateString()}</p>
+                <p className="date">Artwork completed by {project.date.toDate().toDateString()}</p>
 
                 <p className="detail">{project.detail}</p>
 
-                <h4>Project assigned to:</h4>
+                <h4>Credits to:</h4>
 
                 <div className='assigned-users'>
                     {project.assignedUsersList.map(user=>(
