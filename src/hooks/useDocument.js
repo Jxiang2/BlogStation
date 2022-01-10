@@ -9,9 +9,8 @@ export const useDocument = (collection, id) => {
     // realtime data for document
     useEffect(()=>{
         const doc = projectFirestore.collection(collection).doc(id)
-        console.log(doc);
         const unsub = doc.onSnapshot((snapshot)=>{
-            if (snapshot.data) {
+            if (snapshot.data()) {
                 setDocument({...snapshot.data(), id: snapshot.id})
                 setError(null)  
             } else {

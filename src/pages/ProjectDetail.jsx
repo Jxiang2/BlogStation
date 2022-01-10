@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom'
+import ProjectSummary from '../components/ProjectSummary'
 import { useDocument } from '../hooks/useDocument'
 
 // styles
@@ -8,8 +9,6 @@ export default function ProjectDetail() {
 
     const { id } = useParams()
     const { error, document } = useDocument('projects', id)
-
-    console.log(error);
 
     if (error) {
         return <div className='error'>{error}</div>
@@ -21,7 +20,7 @@ export default function ProjectDetail() {
 
     return (
         <div className='project-detail'>
-            <h1>{document.name}</h1>
+            <ProjectSummary project={document}/>
         </div>
     )
 }
