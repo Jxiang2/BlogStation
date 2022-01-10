@@ -1,4 +1,4 @@
-import Avatar from '../components/Avatar'
+import Avatar from './Avatar'
 
 export default function ProjectSummary( { project }) {
     return (
