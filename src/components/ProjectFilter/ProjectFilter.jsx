@@ -14,13 +14,14 @@ export default function ProjectFilter() {
     return (
         <div className='project-filter'>
             <nav>
-                {filterList.map(f=>{
+                <p>filter by:</p>
+                {filterList.map((f) => (
                     <button
                      key={f}
                      onClick={()=>handleClick(f)}
                      className={currentFilter === f ? 'active' : ''}
                     >{f}</button>
-                })}
+                ))}
             </nav>
         </div>
     )
