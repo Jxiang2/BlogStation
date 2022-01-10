@@ -31,6 +31,7 @@ export default function Create() {
     const [assignedUsers, setAssignedUsers] = useState([])
     const [formError, setFormError] = useState(null)
 
+    // listen to userList
     useEffect(()=>{
         if (documents) {
             const options = documents.map((user)=> {
@@ -40,6 +41,7 @@ export default function Create() {
         }
     }, [documents])
 
+    // listen to addDocument reponse
     useEffect(()=>{
         if (response.success === true) {
             history.push('/')
