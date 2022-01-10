@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router-dom'
-import Avatar from './Avatar'
-import { useAuthContext } from '../hooks/useAuthContext'
+import Avatar from '../Avatar/Avatar'
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 // styles & assets
 import './Sidebar.css'
-import DashbordIcon from '../assets/dashboard_icon.svg'
-import AddIcon from '../assets/add_icon.svg'
+import DashbordIcon from '../../assets/dashboard_icon.svg'
+import AddIcon from '../../assets/add_icon.svg'
 
 export default function Sidebar() {
 

@@ -1,6 +1,6 @@
-import { useCollection } from '../hooks/useCollection'
-import { useAuthContext } from '../hooks/useAuthContext'
-import Avatar from './Avatar'
+import { useCollection } from '../../hooks/useCollection'
+import { useAuthContext } from '../../hooks/useAuthContext'
+import Avatar from '../Avatar/Avatar'
 
 // styles
 import './UserList.css'

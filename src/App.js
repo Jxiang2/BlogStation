@@ -6,15 +6,15 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Create from './pages/Create'
 import ProjectDetail from './pages/ProjectDetail'
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 
 // context
 import { useAuthContext } from './hooks/useAuthContext';
 
 // stules
 import './App.css';
-import Sidebar from './components/Sidebar';
-import UserList from './components/UserList';
+import Sidebar from './components/Sidebar/Sidebar';
+import UserList from './components/UserList/UserList';
 
 function App() {
 

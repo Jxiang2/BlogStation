@@ -1,5 +1,5 @@
 import { useCollection } from '../hooks/useCollection'
-import ProjectList from '../components/ProjectList'
+import ProjectList from '../components/ProjectList/ProjectList'
 
 // styles
 import './Dashboard.css'

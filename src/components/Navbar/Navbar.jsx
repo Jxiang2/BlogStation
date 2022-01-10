@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
-import { useLogout } from '../hooks/useLogout'
-import { useAuthContext } from '../hooks/useAuthContext'
+import { useLogout } from '../../hooks/useLogout'
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 // styles & assets
 import './Navbar.css'
-import Temple from '../assets/temple.svg'
+import Temple from '../../assets/temple.svg'
 
 export default function Navbar() {
 
