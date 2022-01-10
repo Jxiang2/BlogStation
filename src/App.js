@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 // pages and components
-import Dashboard from './pages/Dashboard'
-import Login from './pages/Login'
-import Signup from './pages/Signup'
-import Create from './pages/Create'
-import ProjectDetail from './pages/ProjectDetail'
+import Dashboard from './pages/DashboardPage/Dashboard'
+import Login from './pages/LoginPage/Login'
+import Signup from './pages/SignupPage/Signup'
+import Create from './pages/CreatePage/Create'
+import ProjectDetail from './pages/ProjectDetailPage/ProjectDetail'
 import Navbar from './components/Navbar/Navbar';
 
 // context

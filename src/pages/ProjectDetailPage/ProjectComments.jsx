@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { timestamp } from "../../firebase/config"
 import { useAuthContext } from "../../hooks/useAuthContext"
 import { useFirestore } from '../../hooks/useFirestore'
-import Avatar from '../Avatar/Avatar'
+import Avatar from '../../components/Avatar/Avatar'
 
 export default function ProjectComments({ project }) {
 

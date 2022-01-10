@@ -1,10 +1,10 @@
 import Select from 'react-select'
 import { useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { useCollection } from '../hooks/useCollection'
-import { useAuthContext } from '../hooks/useAuthContext' 
-import { useFirestore } from '../hooks/useFirestore'
-import { timestamp } from '../firebase/config'
+import { useCollection } from '../../hooks/useCollection'
+import { useAuthContext } from '../../hooks/useAuthContext' 
+import { useFirestore } from '../../hooks/useFirestore'
+import { timestamp } from '../../firebase/config'
 
 // styles
 import './Create.css'

@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { useCollection } from '../hooks/useCollection'
-import { useAuthContext } from '../hooks/useAuthContext'
-import ProjectList from '../components/ProjectList/ProjectList'
-import ProjectFilter from '../components/ProjectFilter/ProjectFilter'
+import { useCollection } from '../../hooks/useCollection'
+import { useAuthContext } from '../../hooks/useAuthContext'
+import ProjectList from '../../components/ProjectList/ProjectList'
+import ProjectFilter from './ProjectFilter'
 
 // styles
 import './Dashboard.css'
