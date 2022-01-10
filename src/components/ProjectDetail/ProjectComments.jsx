@@ -25,10 +25,15 @@ export default function ProjectComments({ project }) {
             createdAt: timestamp.fromDate(new Date()),
             id: uuid()
         }
-
         updateDocument(project.id, {
             comments: [...project.comments, commentToAdd]
         })
+
+        // bad way
+        // console.log(response)
+        // if (response.success === true && response.error === null)
+        //     setNewComment('')
+        //     console.log('sucessful update');
     }
 
     return (
@@ -62,8 +67,10 @@ export default function ProjectComments({ project }) {
                      value={newComment}
                     ></textarea>
 
-                    {!response.isPending && <button style={{'marginBottom': '100px'}} className='btn'>Add Comment</button>}
-                    {response.isPending &&  <button style={{'marginBottom': '100px'}} disabled className='btn'>Adding...</button>}
+                    {!response.isPending && 
+                    <button style={{'marginBottom': '100px'}} className='btn'>Add Comment</button>}
+                    {response.isPending &&  
+                    <button style={{'marginBottom': '100px'}} disabled className='btn'>Adding...</button>}
                 </label>
             </form>
         </div>
