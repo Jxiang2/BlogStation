@@ -1,3 +1,4 @@
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import uuid from 'react-uuid'
 import { useEffect, useState } from "react"
 import { timestamp } from "../../firebase/config"
@@ -49,7 +50,7 @@ export default function ProjectComments({ project }) {
                         </div>
 
                         <div className='comment-date'>
-                            <p>date here</p>
+                            <p>{formatDistanceToNow(comment.createdAt.toDate(), {addSuffix: true})}</p>
                         </div>
 
                         <div className="comment-conetent"><p>{comment.content}</p></div>
