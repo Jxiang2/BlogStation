@@ -28,7 +28,7 @@ export default function Create() {
     const [detail, setDetail] = useState('')
     const [date, setDate] = useState('')
     const [category, setCategory] = useState('')
-    const [asignedUsers, setAssignedUsers] = useState([])
+    const [assignedUsers, setAssignedUsers] = useState([])
     const [formError, setFormError] = useState(null)
 
     useEffect(()=>{
@@ -40,7 +40,13 @@ export default function Create() {
         }
     }, [documents])
 
-    const handleSubmit = async (e) => {
+    useEffect(()=>{
+        if (response.success === true) {
+            history.push('/')
+        }
+    }, [response, history])
+
+    const handleSubmit = (e) => {
         e.preventDefault()
         setFormError(null)
     
@@ -48,7 +54,7 @@ export default function Create() {
           setFormError('Please select a project category.')
           return
         }
-        if (asignedUsers.length < 1) {
+        if (assignedUsers.length < 1) {
           setFormError('Please assign the project to at least 1 user')
           return
         }
@@ -59,7 +65,7 @@ export default function Create() {
             id: authUser.uid
         }
     
-        const assignedUsersList = asignedUsers.map(u => {
+        const assignedUsersList = assignedUsers.map(u => {
           return { 
             displayName: u.value.displayName, 
             photoURL: u.value.photoURL,
@@ -76,11 +82,8 @@ export default function Create() {
           date: timestamp.fromDate(new Date(date)),
           comments: []
         }
-    
-        await addDocument(project)
-        if (!response.error) {
-          history.push('/')
-        }
+
+        addDocument(project)
     }
 
     return (
