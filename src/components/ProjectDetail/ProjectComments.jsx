@@ -1,14 +1,21 @@
 import uuid from 'react-uuid'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { timestamp } from "../../firebase/config"
 import { useAuthContext } from "../../hooks/useAuthContext"
+import { useFirestore } from '../../hooks/useFirestore'
 
-export default function ProjectComments() {
+export default function ProjectComments({ project }) {
 
     const [newComment, setNewComment] = useState('')
     const { user: authUser } = useAuthContext()
+    const { updateDocument, response } = useFirestore('projects')
 
-    const handleSubmit =  async (e) => {
+    useEffect(()=>{
+        if (response.success === true && response.error === null)
+            setNewComment('')
+    }, [response])
+
+    const handleSubmit = (e) => {
         e.preventDefault()
         const commentToAdd = {
             displayName: authUser.displayName,
@@ -17,7 +24,10 @@ export default function ProjectComments() {
             createdAt: timestamp.fromDate(new Date()),
             id: uuid()
         }
-        console.log(commentToAdd)
+
+        updateDocument(project.id, {
+            comments: [...project.comments, commentToAdd]
+        })
     }
 
     return (
@@ -33,7 +43,8 @@ export default function ProjectComments() {
                      value={newComment}
                     ></textarea>
 
-                    <button className="btn">Add Comment</button>
+                    {!response.isPending && <button style={{'marginBottom': '100px'}} className='btn'>Add Comment</button>}
+                    {response.isPending &&  <button style={{'marginBottom': '100px'}} disabled className='btn'>Adding...</button>}
                 </label>
             </form>
         </div>
