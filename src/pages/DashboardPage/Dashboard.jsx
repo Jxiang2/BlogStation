@@ -25,7 +25,7 @@ export default function Dashboard() {
                     }
                 })
                 return assignedToMe
-            case 'development':
+            case 'dev':
             case 'design':
             case 'sales':
             case 'marketing':
