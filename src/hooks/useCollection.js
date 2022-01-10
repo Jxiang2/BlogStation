@@ -12,14 +12,14 @@ export const useCollection = (collection, _query, _orderBy) => {
     const orderBy = useRef(_orderBy).current
 
     useEffect(()=>{
-        let db = projectFirestore.collection(collection)
+        let col = projectFirestore.collection(collection)
         if (query) {
-            db = db.where(...query)
+            col = col.where(...query)
         }
         if (orderBy) {
-            db = db.orderBy(...orderBy)
+            col = col.orderBy(...orderBy)
         }
-        const unsub = db.onSnapshot((snapshot)=> {
+        const unsub = col.onSnapshot((snapshot)=> {
             let resource = []
             // ary of documents
             snapshot.docs.forEach(doc => {
