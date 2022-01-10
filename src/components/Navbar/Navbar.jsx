@@ -17,7 +17,7 @@ export default function Navbar() {
                 <li className='logo'>
                     <Link to='/'>
                         <img src={Temple} alt="evetns logo" />
-                        <span>Imaginary Arts</span>
+                        <span>PicStation</span>
                     </Link>
                 </li>
 
