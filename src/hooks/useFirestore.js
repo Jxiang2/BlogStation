@@ -72,11 +72,13 @@ export const useFirestore = (collection) => {
     dispatch({ type: 'IS_PENDING' })
 
     try {
-      await col.doc(id).delete()
+      const deletedDocument = await col.doc(id).delete()
+      console.log('I am here')
       dispatchIfNotCancelled({ type: 'DELETED_DOCUMENT' })
-    }
-    catch (err) {
+      return deletedDocument
+    } catch (err) {
       dispatchIfNotCancelled({ type: 'ERROR', payload: 'could not delete' })
+      return null
     }
   }
 

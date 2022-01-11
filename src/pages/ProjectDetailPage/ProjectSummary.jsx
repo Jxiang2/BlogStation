@@ -12,7 +12,7 @@ export default function ProjectSummary( { project }) {
     const { error: retrieveUserError, document: userDoc } = useDocument('users', authUser.uid)
     const history = useHistory()
 
-    const handleClick = (e) => {
+    const handleClick = async (e) => {
         deleteDocument(project.id)
         if (userDoc && !retrieveUserError) {
             updateDocument(authUser.uid, {uploadedImgCount: userDoc.uploadedImgCount-1})
@@ -41,8 +41,8 @@ export default function ProjectSummary( { project }) {
                 </div>
             </div>
             
-            {authUser.uid === project.createdBy.id 
-                && <button className='btn' style={{'marginBottom':'20px'}} onClick={handleClick}>Delete</button>}
+            {(authUser.uid === project.createdBy.id) 
+            && <button className='btn' style={{'marginBottom':'20px'}} onClick={handleClick}>Delete</button>}
         </div>
         
     )
