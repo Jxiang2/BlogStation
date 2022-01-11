@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useCollection } from '../../hooks/useCollection'
 import { useAuthContext } from '../../hooks/useAuthContext' 
 import { useFirestore } from '../../hooks/useFirestore'
+import { useDocument } from '../../hooks/useDocument'
 import { timestamp } from '../../firebase/config'
 
 // styles
@@ -21,7 +22,9 @@ const categories = [
 export default function Create() {
 
     const { addDocument, response } = useFirestore('projects')
+    const { updateDocument } = useFirestore('users')
     const { user: authUser } = useAuthContext()
+    const { error: retrieveUserError, document: userDoc } = useDocument('users', authUser.uid)
     const { documents } = useCollection('users')
 
     const history = useHistory()
@@ -48,9 +51,10 @@ export default function Create() {
         if (response.success === true) {
             history.push('/')
         }
+
     }, [response, history])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         setFormError(null)
     
@@ -87,7 +91,11 @@ export default function Create() {
           comments: []
         }
 
-        addDocument(project)
+        await addDocument(project)
+        if (userDoc && !retrieveUserError) {
+            updateDocument(authUser.uid, {uploadedImgCount: userDoc.uploadedImgCount+1})
+        }
+        
     }
 
     return (
