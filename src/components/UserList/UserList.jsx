@@ -22,7 +22,7 @@ export default function UserList() {
             }).map((user)=>(
                 <div key={user.id} className='user-list-item'>
                     {user.online && <span className='online-user'></span>}
-                    <span>{user.displayName}</span>
+                    <span>{user.displayName} {user.uploadedImgCount}★</span>
                     <Avatar src={user.photoURL}/>
                 </div>
             ))}
