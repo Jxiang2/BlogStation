@@ -40,6 +40,7 @@ export default function ProjectSummary( { project }) {
                     </div>))}
                 </div>
             </div>
+            
             {authUser.uid === project.createdBy.id 
                 && <button className='btn' style={{'marginBottom':'20px'}} onClick={handleClick}>Delete</button>}
         </div>
