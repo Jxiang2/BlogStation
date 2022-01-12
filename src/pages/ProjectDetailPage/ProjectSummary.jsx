@@ -15,10 +15,10 @@ export default function ProjectSummary( { project }) {
     const handleClick = (e) => {
         e.preventDefault()
         history.push('/')
+        deleteDocument(project.id)
         if (userDoc && !retrieveUserError) {
             updateDocument(authUser.uid, {uploadedImgCount: userDoc.uploadedImgCount-1})
         }
-        deleteDocument(project.id)
     }
 
     return (
