@@ -17,7 +17,7 @@ export default function Dashboard() {
         switch (currentFilter) {
             case 'all':
                 return true
-            case 'mine':
+            case 'related':
                 let assignedToMe = false
                 project.assignedUsersList.forEach((assignedUser)=>{
                     if (assignedUser.id === authUser.uid) {

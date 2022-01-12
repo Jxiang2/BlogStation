@@ -1,4 +1,4 @@
-const filterList = ['all', 'mine', 'anime', 'game', 'architecture', 'nature', 'pets', 'people']
+const filterList = ['all', 'related', 'anime', 'game', 'architecture', 'nature', 'pets', 'people']
 
 export default function ProjectFilter( {currentFilter, changeFilter} ) {
 
