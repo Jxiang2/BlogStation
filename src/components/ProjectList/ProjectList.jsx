@@ -11,7 +11,7 @@ export default function ProjectList({ projects }) {
             {projects.map((project)=>(
                 <Link to={`/projects/${project.id}`} key={project.id}>
                     <h4>{project.name}</h4>
-                    <p>due by {project.date.toDate().toDateString()}</p>
+                    <p>{project.date.toDate().toDateString()}</p>
                     <div className='assigned-to'>
                         <ul>
                             {project.assignedUsersList.map((user)=>(

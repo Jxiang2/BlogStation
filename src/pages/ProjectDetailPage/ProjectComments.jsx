@@ -21,6 +21,7 @@ export default function ProjectComments({ project }) {
         e.preventDefault()
         const commentToAdd = {
             displayName: authUser.displayName,
+            creatorUID: authUser.uid,
             photoURL: authUser.photoURL,
             content: newComment,
             createdAt: timestamp.fromDate(new Date()),
@@ -37,6 +38,17 @@ export default function ProjectComments({ project }) {
         //     console.log('sucessful update');
     }
 
+    const handleDelete = (commentId) => {
+        // remove the deleted comment
+        updateDocument(project.id, {
+            comments: [...project.comments].filter((comment)=>{
+                if (comment.id !== commentId) {
+                    return comment
+                }
+            })
+        })
+    }
+
     return (
         <div className="project-comments">
             <h4>Comments</h4>
@@ -46,7 +58,14 @@ export default function ProjectComments({ project }) {
                     <li key={comment.id}>
                         <div className='comment-author'>
                             <Avatar src={comment.photoURL}/>
+
                             <p>{comment.displayName}</p>
+
+                            {(authUser.uid === comment.creatorUID) && <button 
+                             className='btn' 
+                             style={{marginLeft:'auto'}}
+                             onClick={(e)=>handleDelete(comment.id)}
+                            >X</button>}
                         </div>
 
                         <div className='comment-date'>
