@@ -47,8 +47,7 @@ export const useFirestore = (collection) => {
       const addedDocument = await col.add({ ...doc, createdAt })
       dispatchIfNotCancelled({ type: 'ADDED_DOCUMENT', payload: addedDocument })
       return addedDocument
-    }
-    catch (err) {
+    } catch (err) {
       dispatchIfNotCancelled({ type: 'ERROR', payload: err.message })
       return null
     }
@@ -73,7 +72,6 @@ export const useFirestore = (collection) => {
 
     try {
       const deletedDocument = await col.doc(id).delete()
-      console.log('I am here')
       dispatchIfNotCancelled({ type: 'DELETED_DOCUMENT' })
       return deletedDocument
     } catch (err) {
