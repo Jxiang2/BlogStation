@@ -30,6 +30,8 @@ export default function ProjectSummary( { project }) {
 
                 <p className="date">Artwork completed by {project.date.toDate().toDateString()}</p>
 
+                <img className="artwork" src={project.artworkUrl} alt="user avatar" />
+
                 <p className="detail">{project.detail}</p>
 
                 <h4>Credits to:</h4>

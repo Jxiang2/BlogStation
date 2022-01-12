@@ -31,6 +31,7 @@ export default function Create() {
     const [assignedUsers, setAssignedUsers] = useState([])
     const [formError, setFormError] = useState(null)
     const [image, setImage] = useState(null)
+    const [imagePreview, setImagePreview] = useState(null)
     const [imageError, setImageError] = useState(null)
     
 
@@ -72,6 +73,7 @@ export default function Create() {
 
         // valid file
         setImageError(null)
+        setImagePreview(URL.createObjectURL(selected))
         setImage(selected)
     }
 
@@ -141,6 +143,7 @@ export default function Create() {
                      onChange={handleFileChange}
                     />
                     {imageError && <div className='error'>{imageError}</div>}
+                    {imagePreview && <img style={{height: '300px', width: '500px'}} src={imagePreview} alt="Unavailable" />}
                 </label> 
 
                 <label>

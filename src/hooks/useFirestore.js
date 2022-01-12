@@ -43,13 +43,14 @@ export const useFirestore = (collection) => {
   const addDocument = async (doc, image) => {
     dispatch({ type: 'IS_PENDING' })
     try {
-      // uploade user thumbmail
+      // uploade image
       const uploadPath = `artworks/${doc.createdBy.id}/${image.name}`
       const img = await projectStorage.ref(uploadPath).put(image)
-      const imgUrl = await img.ref.getDownloadURL()
+      const artworkUrl = await img.ref.getDownloadURL()
 
+      // create artwork document
       const createdAt = timestamp.fromDate(new Date())
-      const addedDocument = await col.add({ ...doc, createdAt, imgUrl })
+      const addedDocument = await col.add({ ...doc, createdAt, artworkUrl })
       dispatchIfNotCancelled({ type: 'ADDED_DOCUMENT', payload: addedDocument })
       return addedDocument
     } catch (err) {
@@ -76,15 +77,23 @@ export const useFirestore = (collection) => {
     dispatch({ type: 'IS_PENDING' })
 
     try {
-      const deletedDocument = await col.doc(id).delete()
+      const documentToDeleteRef = col.doc(id)
+      
+      // delete image from storage
+      const artworkUrl = (await documentToDeleteRef.get()).data().artworkUrl
+      projectStorage.refFromURL(artworkUrl).delete()
+
+      // delete the artwork document from firestore
+      const deletedDocument = await documentToDeleteRef.delete()
       dispatchIfNotCancelled({ type: 'DELETED_DOCUMENT' })
       return deletedDocument
+
     } catch (err) {
-      dispatchIfNotCancelled({ type: 'ERROR', payload: 'could not delete' })
-      return null
+      dispatchIfNotCancelled({ type: 'ERROR', payload: err.message })
+        return null
     }
   }
-
+  
   useEffect(() => {
     return () => setIsCancelled(true)
   }, [])
