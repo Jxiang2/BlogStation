@@ -18,7 +18,7 @@ export const useSignup = () => {
             const res = await projectAuth.createUserWithEmailAndPassword(email, password)
             if (!res) throw new Error('Could not complete sign up')
 
-            // update user thumbmail
+            // uploade user thumbmail
             const uploadPath = `thumbnails/${res.user.uid}/${thumbmail.name}`
             const img = await projectStorage.ref(uploadPath).put(thumbmail)
             const imgUrl = await img.ref.getDownloadURL()

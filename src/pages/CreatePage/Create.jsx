@@ -21,11 +21,8 @@ const categories = [
 
 export default function Create() {
 
-    const { addDocument, response } = useFirestore('projects')
-    const { updateDocument } = useFirestore('users')
-    const { user: authUser } = useAuthContext()
-    const { error: retrieveUserError, document: userDoc } = useDocument('users', authUser.uid)
-    const { documents } = useCollection('users')
+    const history = useHistory()
+
     const [users, setUsers] = useState([])
     const [name, setName] = useState('')
     const [detail, setDetail] = useState('')
@@ -33,7 +30,15 @@ export default function Create() {
     const [category, setCategory] = useState('')
     const [assignedUsers, setAssignedUsers] = useState([])
     const [formError, setFormError] = useState(null)
-    const history = useHistory()
+    const [image, setImage] = useState(null)
+    const [imageError, setImageError] = useState(null)
+    
+
+    const { addDocument, response } = useFirestore('projects')
+    const { updateDocument } = useFirestore('users')
+    const { user: authUser } = useAuthContext()
+    const { error: retrieveUserError, document: userDoc } = useDocument('users', authUser.uid)
+    const { documents } = useCollection('users')
 
     // listen to userList
     useEffect(()=>{
@@ -52,6 +57,23 @@ export default function Create() {
         }
 
     }, [response, history])
+
+    const handleFileChange = (e) => {
+        setImage(null)
+        let selected = e.target.files[0]
+        if (!selected) {
+            setImageError('Please select a file')
+            return
+        }
+        if (!selected.type.includes('image')) {
+            setImageError('Selected file must be an image')
+            return 
+        }
+
+        // valid file
+        setImageError(null)
+        setImage(selected)
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -90,7 +112,7 @@ export default function Create() {
           comments: []
         }
 
-        await addDocument(project)
+        await addDocument(project, image)
         if (userDoc && !retrieveUserError) {
             updateDocument(authUser.uid, {uploadedImgCount: userDoc.uploadedImgCount+1})
         }
@@ -110,6 +132,16 @@ export default function Create() {
                      value={name}
                     />
                 </label>
+
+                <label>
+                    <span>Upload Image</span>
+                    <input 
+                     type="file" 
+                     required
+                     onChange={handleFileChange}
+                    />
+                    {imageError && <div className='error'>{imageError}</div>}
+                </label> 
 
                 <label>
                     <span>Artwork Detail</span>
