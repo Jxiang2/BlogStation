@@ -13,6 +13,7 @@ export default function ProjectSummary( { project }) {
     const history = useHistory()
 
     const handleClick = (e) => {
+        e.preventDefault()
         history.push('/')
         if (userDoc && !retrieveUserError) {
             updateDocument(authUser.uid, {uploadedImgCount: userDoc.uploadedImgCount-1})

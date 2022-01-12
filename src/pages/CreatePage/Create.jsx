@@ -26,8 +26,6 @@ export default function Create() {
     const { user: authUser } = useAuthContext()
     const { error: retrieveUserError, document: userDoc } = useDocument('users', authUser.uid)
     const { documents } = useCollection('users')
-
-    const history = useHistory()
     const [users, setUsers] = useState([])
     const [name, setName] = useState('')
     const [detail, setDetail] = useState('')
@@ -35,6 +33,7 @@ export default function Create() {
     const [category, setCategory] = useState('')
     const [assignedUsers, setAssignedUsers] = useState([])
     const [formError, setFormError] = useState(null)
+    const history = useHistory()
 
     // listen to userList
     useEffect(()=>{
