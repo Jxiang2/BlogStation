@@ -1,6 +1,8 @@
 // styles
 import { useState } from 'react'
 import { useUpdateProfile } from '../../hooks/useUpdateProfile'
+import { useAuthContext } from '../../hooks/useAuthContext'
+import { projectAuth } from '../../firebase/config'
 import './Account.css'
 
 export default function Account() {
@@ -8,6 +10,9 @@ export default function Account() {
     const [displayName, setDisplayName] = useState('')
     const [thumbmail, setThumbmail] = useState(null)
     const [thumbmailError, setThumbmailError] = useState(null)
+    const [showEmailSent, setShowEmailSent] = useState(false)
+    const [emailError, setEmailError] = useState(null)
+    const { user: authUser} = useAuthContext()
     const { changeDisplayName, 
             error: changeDisplayNameError, 
             isPending: changeDisplayNameIspending } = useUpdateProfile('users')
@@ -37,10 +42,21 @@ export default function Account() {
         e.preventDefault()
         if (displayName) {
             changeDisplayName(displayName)
-        } else {
-
         }
-        
+    }
+
+    const resetPwd = () => {
+        setEmailError(null)
+        setShowEmailSent(true)
+        setTimeout(()=>setShowEmailSent(false), 5000)
+        projectAuth.sendPasswordResetEmail(authUser.email)
+        .then(() => {
+            console.log('email is sent')
+        })
+        .catch((error) => {
+            console.log(error.message)
+            setEmailError('failed to send email, try again later')
+        });
     }
 
     const handleChangechangeAvatar = async (e) => {
@@ -63,12 +79,12 @@ export default function Account() {
                 {displayName && (
                     !changeDisplayNameIspending ?
                     <button 
-                    style={{marginTop: '10px'}} 
+                    style={{marginTop: '10px', marginLeft: '10px'}} 
                     className='btn'
                     onClick={handleChangeDisplayName}>Submit</button> :
 
                     <button 
-                    style={{marginTop: '10px'}} 
+                    style={{marginTop: '10px', marginLeft: '10px'}} 
                     className='btn'
                     disabled
                     onClick={handleChangeDisplayName}>Submitting...</button>
@@ -88,10 +104,14 @@ export default function Account() {
                 
                 {thumbmail &&
                     <button 
-                    style={{marginTop: '10px'}} 
+                    style={{marginTop: '10px', marginLeft: '10px'}} 
                     className='btn'
                     onClick={handleChangechangeAvatar}>Upload</button>} 
-            </label>  
+            </label>
+
+            {!showEmailSent && <button style={{marginTop: '10px'}} className='btn' onClick={resetPwd}>Change Password</button>}
+            {showEmailSent && <button style={{marginTop: '10px'}} className='btn' disabled onClick={resetPwd}>Change Password</button>}
+            {emailError && <p>{emailError}</p>}
         </>
     )
 }
