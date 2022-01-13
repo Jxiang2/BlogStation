@@ -29,7 +29,7 @@ export default function Dashboard() {
             case 'anime':
             case 'nature':
             case 'architecture':
-            case 'animals':
+            case 'pets':
             case 'people':
                 return project.category === currentFilter
             default:

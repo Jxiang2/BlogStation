@@ -142,7 +142,7 @@ export default function Create() {
                      onChange={handleFileChange}
                     />
                     {imageError && <div className='error'>{imageError}</div>}
-                    {imagePreview && <img style={{height: '450px', width: '500px'}} src={imagePreview} alt="Unavailable" />}
+                    {imagePreview && <img style={{height: '400px', width: '500px'}} src={imagePreview} alt="Unavailable" />}
                 </label> 
 
                 <label>
