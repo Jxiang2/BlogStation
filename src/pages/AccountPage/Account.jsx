@@ -111,6 +111,7 @@ export default function Account() {
 
             {!showEmailSent && <button style={{marginTop: '10px'}} className='btn' onClick={resetPwd}>Change Password</button>}
             {showEmailSent && <button style={{marginTop: '10px'}} className='btn' disabled onClick={resetPwd}>Change Password</button>}
+            {showEmailSent && <p style={{color: 'green'}}>a password reset email is sent</p>}
             {emailError && <p>{emailError}</p>}
         </>
     )
