@@ -46,7 +46,8 @@ export const useUpdateProfile = (colRef) => {
         setIsPending(true)
         const user = projectAuth.currentUser
 
-        try {
+        if (!isCancelled) {
+            try {
             // uploade new user thumbmail to storage
             const uploadPath = `thumbnails/${user.uid}/${thumbmail.name}`
             const img = await projectStorage.ref(uploadPath).put(thumbmail)
@@ -55,18 +56,17 @@ export const useUpdateProfile = (colRef) => {
             // update the additional attribute  to user
             await user.updateProfile({photoURL: imgUrl})
 
-            // update context & states
+            // update context & states & update userDoc
             dispatch({type:'UPDATE_PROFILE', payload: {...authUser, photoURL: imgUrl}})
-
-            // update userDoc
-            const updatedDocument = await col.doc(authUser.uid).update({photoURL: imgUrl})
+            const updatedDocument = col.doc(authUser.uid).update({photoURL: imgUrl})
             return updatedDocument
 
-        } catch (err) {
-            setError(err.message)
-            setIsPending(false)
-            return null
-        }
+            } catch (err) {
+                setError(err.message)
+                setIsPending(false)
+                return null
+            }
+        }     
     }
 
     // clearup function
