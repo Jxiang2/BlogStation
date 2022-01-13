@@ -7,6 +7,7 @@ import { useDocument } from '../../hooks/useDocument'
 import './Sidebar.css'
 import DashbordIcon from '../../assets/dashboard_icon.svg'
 import AddIcon from '../../assets/add_icon.svg'
+import AccountIcon from '../../assets/manage_accounts.svg'
 
 export default function Sidebar() {
 
@@ -35,6 +36,12 @@ export default function Sidebar() {
                             <NavLink exact to='/create'>
                                 <img src={AddIcon} alt="add-icon"/>
                                 <span>New Artwork</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink exact to='/account'>
+                                <img src={AccountIcon} alt="account-icon"/>
+                                <span>Account</span>
                             </NavLink>
                         </li>
                     </ul>

@@ -7,6 +7,7 @@ import Signup from './pages/SignupPage/Signup'
 import Create from './pages/CreatePage/Create'
 import ProjectDetail from './pages/ProjectDetailPage/ProjectDetail'
 import Navbar from './components/Navbar/Navbar';
+import Account from './pages/AccountPage/Account';
 
 // context
 import { useAuthContext } from './hooks/useAuthContext';
@@ -52,6 +53,11 @@ function App() {
             <Switch><Route exact path='/login'>
               {!user && <Login/>}
               {user && <Redirect to='/'/>}
+            </Route></Switch>
+
+            <Switch><Route exact path='/account'>
+              {user && <Account/>}
+              {!user && <Redirect to='/login'/>}
             </Route></Switch>
           </div>
 
