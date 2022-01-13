@@ -1,4 +1,4 @@
-import  { projectAuth, projectFirestore } from '../firebase/config'
+import  { projectAuth, projectFirestore, projectStorage } from '../firebase/config'
 import { useAuthContext } from './useAuthContext'
 import { useState, useEffect } from "react"
 
@@ -40,8 +40,33 @@ export const useUpdateProfile = (colRef) => {
         }
     }
 
-    const changeAvatar = () => {
+    const changeAvatar = async (thumbmail) => {
 
+        setError(null)
+        setIsPending(true)
+        const user = projectAuth.currentUser
+
+        try {
+            // uploade new user thumbmail to storage
+            const uploadPath = `thumbnails/${user.uid}/${thumbmail.name}`
+            const img = await projectStorage.ref(uploadPath).put(thumbmail)
+            const imgUrl = await img.ref.getDownloadURL()
+
+            // update the additional attribute  to user
+            await user.updateProfile({photoURL: imgUrl})
+
+            // update context & states
+            dispatch({type:'UPDATE_PROFILE', payload: {...authUser, photoURL: imgUrl}})
+
+            // update userDoc
+            const updatedDocument = await col.doc(authUser.uid).update({photoURL: imgUrl})
+            return updatedDocument
+
+        } catch (err) {
+            setError(err.message)
+            setIsPending(false)
+            return null
+        }
     }
 
     // clearup function
