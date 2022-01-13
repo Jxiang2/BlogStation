@@ -56,9 +56,13 @@ export const useUpdateProfile = (colRef) => {
             // update the additional attribute  to user
             await user.updateProfile({photoURL: imgUrl})
 
-            // update context & states & update userDoc
+            // update update userDoc
+            const updatedDocument = await col.doc(authUser.uid).update({photoURL: imgUrl})
+            
+            // update context & states 
             dispatch({type:'UPDATE_PROFILE', payload: {...authUser, photoURL: imgUrl}})
-            const updatedDocument = col.doc(authUser.uid).update({photoURL: imgUrl})
+            setIsPending(false)
+            setError(null) 
             return updatedDocument
 
             } catch (err) {

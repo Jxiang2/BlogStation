@@ -13,7 +13,7 @@ export default function Account() {
     const [showEmailSent, setShowEmailSent] = useState(false)
     const [emailError, setEmailError] = useState(null)
     const { user: authUser} = useAuthContext()
-    const { changeDisplayName, 
+    const { changeDisplayName, changeAvatar,
             error: changeDisplayNameError, 
             isPending: changeDisplayNameIspending } = useUpdateProfile('users')
 
@@ -61,7 +61,8 @@ export default function Account() {
 
     const handleChangechangeAvatar = async (e) => {
         e.preventDefault()
-        console.log(thumbmail);
+        console.log(thumbmail)
+        changeAvatar(thumbmail)
     }
 
     return (
