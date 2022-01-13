@@ -8,35 +8,12 @@ import './Account.css'
 export default function Account() {
 
     const [displayName, setDisplayName] = useState('')
-    const [thumbmail, setThumbmail] = useState(null)
-    const [thumbmailError, setThumbmailError] = useState(null)
     const [showEmailSent, setShowEmailSent] = useState(false)
     const [emailError, setEmailError] = useState(null)
     const { user: authUser} = useAuthContext()
-    const { changeDisplayName, changeAvatar,
+    const { changeDisplayName,
             error: changeDisplayNameError, 
             isPending: changeDisplayNameIspending } = useUpdateProfile('users')
-
-    const handleFileChange = (e) => {
-        setThumbmail(null)
-        let selected = e.target.files[0]
-        if (!selected) {
-            setThumbmailError('Please select a file')
-            return
-        }
-        if (!selected.type.includes('image')) {
-            setThumbmailError('Selected file must be an image')
-            return 
-        }
-        if (selected.size > 500000) {
-            setThumbmailError('Image size must be less than 100kb')
-            return
-        }
-
-        // valid file
-        setThumbmailError(null)
-        setThumbmail(selected)
-    }
 
     const handleChangeDisplayName = (e) => {
         e.preventDefault()
@@ -57,12 +34,6 @@ export default function Account() {
             console.log(error.message)
             setEmailError('failed to send email, try again later')
         });
-    }
-
-    const handleChangechangeAvatar = async (e) => {
-        e.preventDefault()
-        console.log(thumbmail)
-        changeAvatar(thumbmail)
     }
 
     return (
@@ -92,23 +63,7 @@ export default function Account() {
                 )}
 
                 {changeDisplayNameError && <p className='error'>{changeDisplayNameError}</p>}
-            </label>   
-            
-            <label className='changeAvatar'>
-                <span>Profile Image: </span>
-                <input 
-                 type="file" 
-                 required
-                 onChange={handleFileChange}
-                />
-                {thumbmailError && <div className='error'>{thumbmailError}</div>}
-                
-                {thumbmail &&
-                    <button 
-                    style={{marginTop: '10px', marginLeft: '10px'}} 
-                    className='btn'
-                    onClick={handleChangechangeAvatar}>Upload</button>} 
-            </label>
+            </label>  
 
             {!showEmailSent && <button style={{marginTop: '10px'}} className='btn' onClick={resetPwd}>Change Password</button>}
             {showEmailSent && <button style={{marginTop: '10px'}} className='btn' disabled onClick={resetPwd}>Change Password</button>}

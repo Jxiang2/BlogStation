@@ -56,7 +56,7 @@ export const useUpdateProfile = (colRef) => {
             // update the additional attribute  to user
             await user.updateProfile({photoURL: imgUrl})
 
-            // update update userDoc
+            // update update userDoc & projectDoc
             const updatedDocument = await col.doc(authUser.uid).update({photoURL: imgUrl})
             
             // update context & states 
