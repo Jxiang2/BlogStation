@@ -8,7 +8,9 @@ export default function Account() {
     const [displayName, setDisplayName] = useState('')
     const [thumbmail, setThumbmail] = useState(null)
     const [thumbmailError, setThumbmailError] = useState(null)
-    const { changeDisplayName, error, isPending } = useUpdateProfile('users')
+    const { changeDisplayName, 
+            error: changeDisplayNameError, 
+            isPending: changeDisplayNameIspending } = useUpdateProfile('users')
 
     const handleFileChange = (e) => {
         setThumbmail(null)
@@ -31,10 +33,14 @@ export default function Account() {
         setThumbmail(selected)
     }
 
-    const handleChangeDisplayName = async (e) => {
+    const handleChangeDisplayName = (e) => {
         e.preventDefault()
-        console.log(displayName);
-        // changeDisplayName(displayName)
+        if (displayName) {
+            changeDisplayName(displayName)
+        } else {
+
+        }
+        
     }
 
     const handleChangechangeAvatar = async (e) => {
@@ -43,8 +49,8 @@ export default function Account() {
     }
 
     return (
-        <div>
-            <label>
+        <>
+            <label className='change-displayName'>
                 <span>Display Name: </span>
                 <input 
                  type="text" 
@@ -53,13 +59,25 @@ export default function Account() {
                  value={displayName}
                  maxLength={15}
                 />
-                <button 
-                 style={{marginTop: '10px'}} 
-                 className='btn'
-                 onClick={handleChangeDisplayName}>submit</button>
-            </label>   
 
-            <label>
+                {displayName && (
+                    !changeDisplayNameIspending ?
+                    <button 
+                    style={{marginTop: '10px'}} 
+                    className='btn'
+                    onClick={handleChangeDisplayName}>Submit</button> :
+
+                    <button 
+                    style={{marginTop: '10px'}} 
+                    className='btn'
+                    disabled
+                    onClick={handleChangeDisplayName}>Submitting...</button>
+                )}
+
+                {changeDisplayNameError && <p className='error'>{changeDisplayNameError}</p>}
+            </label>   
+            
+            <label className='changeAvatar'>
                 <span>Profile Image: </span>
                 <input 
                  type="file" 
@@ -67,11 +85,13 @@ export default function Account() {
                  onChange={handleFileChange}
                 />
                 {thumbmailError && <div className='error'>{thumbmailError}</div>}
-                <button 
-                 style={{marginTop: '10px'}} 
-                 className='btn'
-                 onClick={handleChangechangeAvatar}>submit</button>
+                
+                {thumbmail &&
+                    <button 
+                    style={{marginTop: '10px'}} 
+                    className='btn'
+                    onClick={handleChangechangeAvatar}>Upload</button>} 
             </label>  
-        </div>
+        </>
     )
 }

@@ -20,13 +20,18 @@ export const useUpdateProfile = (colRef) => {
 
         if  (!isCancelled) {
             try {
+                // update authUser
                 await user.updateProfile({
                 displayName: displayName
                 })
+                console.log('passed')
                 // also update userDocument
                 const updatedDocument = await col.doc(authUser.uid).update({displayName: displayName})
-                // update context
+                console.log('passed')
+                // update context & states
                 dispatch({type:'UPDATE_PROFILE', payload: {...authUser, displayName: displayName}})
+                setIsPending(false)
+                setError(null) 
                 return updatedDocument
             } catch (err) {
                 setError(err.message)
