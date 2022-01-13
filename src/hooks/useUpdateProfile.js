@@ -64,7 +64,6 @@ export const useUpdateProfile = (colRef) => {
             setIsPending(false)
             setError(null) 
             return updatedDocument
-
             } catch (err) {
                 setError(err.message)
                 setIsPending(false)
