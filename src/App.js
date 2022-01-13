@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 
 // pages and components
 import Dashboard from './pages/DashboardPage/Dashboard'
@@ -6,8 +6,9 @@ import Login from './pages/LoginPage/Login'
 import Signup from './pages/SignupPage/Signup'
 import Create from './pages/CreatePage/Create'
 import ProjectDetail from './pages/ProjectDetailPage/ProjectDetail'
-import Navbar from './components/Navbar/Navbar';
-import Account from './pages/AccountPage/Account';
+import Navbar from './components/Navbar/Navbar'
+import Account from './pages/AccountPage/Account'
+import Game from './pages/GamePage/Game'
 
 // context
 import { useAuthContext } from './hooks/useAuthContext';
@@ -57,6 +58,11 @@ function App() {
 
             <Switch><Route exact path='/account'>
               {user && <Account/>}
+              {!user && <Redirect to='/login'/>}
+            </Route></Switch>
+
+            <Switch><Route exact path='/game'>
+              {user && <Game/>}
               {!user && <Redirect to='/login'/>}
             </Route></Switch>
           </div>

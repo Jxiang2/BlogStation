@@ -8,6 +8,7 @@ import './Sidebar.css'
 import DashbordIcon from '../../assets/dashboard_icon.svg'
 import AddIcon from '../../assets/add_icon.svg'
 import AccountIcon from '../../assets/manage_accounts.svg'
+import GameIcon from '../../assets/game.svg'
 
 export default function Sidebar() {
 
@@ -39,9 +40,15 @@ export default function Sidebar() {
                             </NavLink>
                         </li>
                         <li>
+                            <NavLink exact to='/game'>
+                                <img src={GameIcon} alt="game-icon"/>
+                                <span>Play A Game</span>
+                            </NavLink>
+                        </li>
+                        <li>
                             <NavLink exact to='/account'>
                                 <img src={AccountIcon} alt="account-icon"/>
-                                <span>Account</span>
+                                <span>My Account</span>
                             </NavLink>
                         </li>
                     </ul>

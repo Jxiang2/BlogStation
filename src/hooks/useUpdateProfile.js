@@ -44,8 +44,12 @@ export const useUpdateProfile = (colRef) => {
 
     }
 
+    // clearup function
     useEffect(() => {
-        return () => setIsCancelled(true)
+        return () => {
+            console.log('cancelled due to redirect')
+            setIsCancelled(true)
+        }
     }, [])
     
     return { changeDisplayName, changeAvatar, error, isPending }
