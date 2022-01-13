@@ -51,6 +51,7 @@ export const useFirestore = (collection) => {
       // create artwork document
       const createdAt = timestamp.fromDate(new Date())
       const addedDocument = await col.add({ ...doc, createdAt, artworkUrl })
+
       dispatchIfNotCancelled({ type: 'ADDED_DOCUMENT', payload: addedDocument })
       return addedDocument
     } catch (err) {
@@ -64,6 +65,7 @@ export const useFirestore = (collection) => {
     dispatch({ type: 'IS_PENDING' })
     try {
       const updatedDocument = await col.doc(id).update(updates)
+      
       dispatchIfNotCancelled({type: 'UPDATED_DOCUMENT', payload: updatedDocument})
       return updatedDocument
     } catch (err) {
@@ -85,6 +87,7 @@ export const useFirestore = (collection) => {
 
       // delete the artwork document from firestore
       const deletedDocument = await documentToDeleteRef.delete()
+
       dispatchIfNotCancelled({ type: 'DELETED_DOCUMENT' })
       return deletedDocument
 

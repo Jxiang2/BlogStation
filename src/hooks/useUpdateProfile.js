@@ -22,12 +22,11 @@ export const useUpdateProfile = (colRef) => {
             try {
                 // update authUser
                 await user.updateProfile({
-                displayName: displayName
-                })
-                console.log('passed')
+                displayName: displayName})
+
                 // also update userDocument
                 const updatedDocument = await col.doc(authUser.uid).update({displayName: displayName})
-                console.log('passed')
+                
                 // update context & states
                 dispatch({type:'UPDATE_PROFILE', payload: {...authUser, displayName: displayName}})
                 setIsPending(false)

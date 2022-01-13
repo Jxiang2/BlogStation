@@ -56,7 +56,6 @@ export default function Create() {
         if (response.success === true) {
             history.push('/')
         }
-
     }, [response, history])
 
     const handleFileChange = (e) => {
