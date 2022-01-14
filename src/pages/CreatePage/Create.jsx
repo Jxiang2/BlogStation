@@ -26,7 +26,6 @@ export default function Create() {
     const [users, setUsers] = useState([])
     const [name, setName] = useState('')
     const [detail, setDetail] = useState('')
-    const [date, setDate] = useState('')
     const [category, setCategory] = useState('')
     const [assignedUsers, setAssignedUsers] = useState([])
     const [formError, setFormError] = useState(null)
@@ -109,7 +108,7 @@ export default function Create() {
           assignedUsersList, 
           createdBy,
           category: category.value,
-          date: timestamp.fromDate(new Date(date)),
+          date: timestamp.fromDate(new Date()),
           comments: []
         }
 
@@ -125,7 +124,7 @@ export default function Create() {
             <h2 className='page-title'>Upload New Artwork</h2>
             <form onSubmit={handleSubmit}>
                 <label>
-                    <span>Artwork Name</span>
+                    <span>Title</span>
                     <input 
                      type="text"
                      required
@@ -146,7 +145,7 @@ export default function Create() {
                 </label> 
 
                 <label>
-                    <span>Artwork Detail</span>
+                    <span>Detail</span>
                     <textarea 
                      type="text"
                      required
@@ -156,16 +155,7 @@ export default function Create() {
                 </label>
 
                 <label>
-                    <span>Date of Completion</span>
-                    <input 
-                     type="date"
-                     required
-                     onChange={e=>setDate(e.target.value)}
-                     value={date}/>
-                </label>
-
-                <label>
-                    <span>Artwork Category</span>
+                    <span>Category</span>
                     <Select
                      maxMenuHeight='100px'
                      onChange={(option)=>setCategory(option)}
@@ -174,7 +164,7 @@ export default function Create() {
                 </label>
 
                 <label>
-                    <span>Credits To</span>
+                    <span>Credits to</span>
                     <Select 
                      maxMenuHeight='100px'
                      options={users}
