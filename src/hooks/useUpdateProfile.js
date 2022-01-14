@@ -24,9 +24,11 @@ export const useUpdateProfile = (colRef) => {
                 await user.updateProfile({
                 displayName: displayName})
 
-                // also update userDocument
+                // update userDocument
                 const updatedDocument = await col.doc(authUser.uid).update({displayName: displayName})
-                
+
+                // update projectsDocuments with a query, no need to wait
+    
                 // update context & states
                 dispatch({type:'UPDATE_PROFILE', payload: {...authUser, displayName: displayName}})
                 setIsPending(false)
