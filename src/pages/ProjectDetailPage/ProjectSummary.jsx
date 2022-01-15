@@ -28,7 +28,7 @@ export default function ProjectSummary( { project }) {
 
                 <p>By {project.createdBy.displayName}</p>
 
-                <p className="date">Artwork completed by {project.date.toDate().toDateString()}</p>
+                <p className="date">{project.date.toDate().toDateString()}</p>
 
                 <img className="artwork" src={project.artworkUrl} alt="user avatar" />
 
