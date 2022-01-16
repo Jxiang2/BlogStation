@@ -4,9 +4,10 @@ This is A blog web application with similar functionality as twitter and instagr
 
 ## Project Tech Stack:
 
-Frontend: React
-Backend: Firebase
-Database: Firestore
+* Frontend: React
+* Backend: Firebase
+* Database: Firestore
+
 
 ## Functionalities:
 
