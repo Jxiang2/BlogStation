@@ -40,15 +40,15 @@ export default function Sidebar() {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink exact to='/game'>
-                                <img src={GameIcon} alt="game-icon"/>
-                                <span>Play A Game</span>
-                            </NavLink>
-                        </li>
-                        <li>
                             <NavLink exact to='/account'>
                                 <img src={AccountIcon} alt="account-icon"/>
                                 <span>My Account</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink exact to='/game'>
+                                <img src={GameIcon} alt="game-icon"/>
+                                <span>Play A Game</span>
                             </NavLink>
                         </li>
                     </ul>

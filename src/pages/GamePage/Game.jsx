@@ -73,10 +73,10 @@ export default function Game() {
     }, [choiceOne, choiceTwo])
 
     return (
-        <div className="Game">
-            <h1>Magic Memory</h1>
+        <>
+            <h1 style={{'textAlign':'center'}}>Magic Memory</h1>
 
-            <button onClick={shuffleCards}>New Game</button>
+            <p style={{'textAlign':'center'}}><button onClick={shuffleCards}>New Game</button></p>
 
             <div className='card-grid'>
                 {cards.map(card => (
@@ -89,7 +89,7 @@ export default function Game() {
                 />))}
             </div>
 
-            <p style={{'margin':'20px auto'}}>Turns: {turns}</p>
-        </div>
+            <p style={{'textAlign': 'center'}}>Turns: {turns}</p>
+        </>
     )
 }
