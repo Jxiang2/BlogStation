@@ -89,7 +89,7 @@ export default function Game() {
                 />))}
             </div>
 
-            <p style={{'textAlign': 'center'}}>Turns: {turns}</p>
+            <p style={{'textAlign': 'center'}}>Turns:{turns}</p>
         </>
     )
 }

@@ -14,7 +14,7 @@ export default function ProjectFilter( {currentFilter, changeFilter} ) {
                     <button
                      key={f}
                      onClick={()=>handleClick(f)}
-                     className={currentFilter === f ? 'active' : ''}
+                     className={currentFilter === f ? 'active, btn' : 'btn'}
                     >{f}</button>
                 ))}
             </nav>
