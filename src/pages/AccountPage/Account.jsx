@@ -39,7 +39,7 @@ export default function Account() {
     return (
         <>
             <label className='change-displayName'>
-                <span>Display Name: </span>
+                <span>Change Display Name </span>
                 <input 
                  type="text" 
                  required
