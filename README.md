@@ -12,7 +12,7 @@ This is A blog web application with similar functionality as twitter and instagr
 ## Functionalities:
 
 * User Authentication & Account Management
-* Upload Text & Images
+* Upload Text & Images & Mention Other Users
 * Comment On Blogs
 * Play An Embeded Memory Game
 
