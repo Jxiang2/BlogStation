@@ -65,8 +65,8 @@ export default function Account() {
                 {changeDisplayNameError && <p className='error'>{changeDisplayNameError}</p>}
             </label>  
 
-            {!showEmailSent && <button style={{marginTop: '10px'}} className='btn' onClick={resetPwd}>Change Password</button>}
-            {showEmailSent && <button style={{marginTop: '10px'}} className='btn' disabled onClick={resetPwd}>Change Password</button>}
+            {!showEmailSent && <button style={{marginTop: '10px'}} className='btn' onClick={resetPwd}>Reset Password</button>}
+            {showEmailSent && <button style={{marginTop: '10px'}} className='btn' disabled onClick={resetPwd}>Reset Password</button>}
             {showEmailSent && <p style={{color: 'green'}}>a password reset email is sent</p>}
             {emailError && <p>{emailError}</p>}
         </>
