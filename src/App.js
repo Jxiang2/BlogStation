@@ -11,7 +11,8 @@ import Account from './pages/AccountPage/Account'
 import Game from './pages/GamePage/Game'
 
 // context
-import { useAuthContext } from './hooks/useAuthContext';
+import { useAuthContext } from './hooks/useAuthContext'
+
 
 // stules
 import './App.css';
